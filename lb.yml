@@ -1,0 +1,15 @@
+- name: HAPROXY
+  hosts: lb
+  tasks:
+  - name: haproxy inatsll
+    package:
+      name: haproxy
+      state: present
+  - name: copy haproxy file
+    template:
+      src: "haproxy.cfg"
+      dest: "/etc/haproxy/haproxy.cfg"
+  - name: start haproxy
+    service:
+      name: "haproxy"
+      state: started
